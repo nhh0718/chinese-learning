@@ -9,12 +9,12 @@ export async function handleHelp(bot: TelegramBot, msg: TelegramBot.Message) {
     `/start - Khởi động bot\n` +
     `/subscribe [email] - Đăng ký nhận từ vựng hàng ngày\n` +
     `/unsubscribe - Hủy đăng ký\n` +
-    `/quiz - Làm bài kiểm tra hàng ngày\n` +
-    `/status - Xem trạng thái học tập\n` +
+    `/review - Xem 10 từ vựng hôm nay\n` +
+    `/vocab [ngày] - Xem từ vựng theo ngày\n` +
+    `/quiz - Làm bài kiểm tra trên web\n` +
+    `/word - Thử 1 từ ngẫu nhiên\n` +
+    `/status - Xem điểm & streak\n` +
     `/help - Xem hướng dẫn này\n\n` +
-    `Ví dụ:\n` +
-    `• /subscribe example@gmail.com\n` +
-    `• /quiz - Làm bài kiểm tra\n` +
-    `• /status - Xem điểm và streak`
+    `💡 Mẹo: Làm bài quiz trên web để lưu điểm!`
   );
 }

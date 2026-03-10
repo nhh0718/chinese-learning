@@ -14,7 +14,7 @@ interface AuthState {
   clearError: () => void;
 }
 
-const API_URL = 'http://localhost:5000/api/v1/auth';
+const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/v1/auth`;
 
 export const useAuthStore = create<AuthState>()(
   persist(

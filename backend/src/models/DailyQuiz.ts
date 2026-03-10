@@ -29,7 +29,7 @@ const QuizQuestionSchema: Schema = new Schema({
 
 const DailyQuizSchema: Schema = new Schema({
   date: { type: String, required: true, unique: true }, // YYYY-MM-DD
-  topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
+  topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: false, default: null },
   topicName: { type: String, required: true },
   vocabularyCount: { type: Number, required: true },
   questions: { type: [QuizQuestionSchema], required: true }

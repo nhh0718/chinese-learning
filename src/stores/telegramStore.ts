@@ -1,5 +1,15 @@
 import { create } from 'zustand';
 import type { DailyQuiz, TelegramProgress, TelegramSubscription } from '../types';
+import { API_URLS } from '../config/api';
+
+interface QuizHistoryItem {
+  date: string;
+  score: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  source: string;
+  topicName: string;
+}
 
 interface TelegramState {
   // Daily Quiz
@@ -15,16 +25,22 @@ interface TelegramState {
   subscription: TelegramSubscription | null;
   isSubscriptionLoading: boolean;
 
+  // Quiz History
+  quizHistory: QuizHistoryItem[];
+  isHistoryLoading: boolean;
+
   // Actions
   fetchDailyQuiz: () => Promise<void>;
+  fetchQuizByDate: (date: string) => Promise<DailyQuiz | null>;
   submitQuizResult: (userId: string, answers: { questionIndex: number; answerIndex: number }[]) => Promise<void>;
   fetchProgress: (userId: string) => Promise<void>;
   fetchSubscription: (userId: string) => Promise<void>;
+  fetchQuizHistory: (userId: string, limit?: number) => Promise<void>;
   updateSubscription: (userId: string, reminderTime?: string, timezone?: string) => Promise<void>;
   clearError: () => void;
 }
 
-const API_URL = 'http://localhost:5000/api/v1/telegram';
+const API_URL = API_URLS.telegram;
 
 export const useTelegramStore = create<TelegramState>()((set, get) => ({
   // Initial state
@@ -35,6 +51,8 @@ export const useTelegramStore = create<TelegramState>()((set, get) => ({
   isProgressLoading: false,
   subscription: null,
   isSubscriptionLoading: false,
+  quizHistory: [],
+  isHistoryLoading: false,
 
   fetchDailyQuiz: async () => {
     set({ isQuizLoading: true, quizError: null });
@@ -45,6 +63,16 @@ export const useTelegramStore = create<TelegramState>()((set, get) => ({
       set({ dailyQuiz: data, isQuizLoading: false });
     } catch (err: any) {
       set({ quizError: err.message, isQuizLoading: false });
+    }
+  },
+
+  fetchQuizByDate: async (date: string) => {
+    try {
+      const res = await fetch(`${API_URL}/quiz/${date}`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
     }
   },
 
@@ -111,6 +139,18 @@ export const useTelegramStore = create<TelegramState>()((set, get) => ({
       set({ subscription: data, isSubscriptionLoading: false });
     } catch (err: any) {
       set({ isSubscriptionLoading: false });
+    }
+  },
+
+  fetchQuizHistory: async (userId, limit = 30) => {
+    set({ isHistoryLoading: true });
+    try {
+      const res = await fetch(`${API_URL}/history/${userId}?limit=${limit}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch quiz history');
+      set({ quizHistory: data, isHistoryLoading: false });
+    } catch (err: any) {
+      set({ isHistoryLoading: false });
     }
   },
 

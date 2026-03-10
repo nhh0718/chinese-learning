@@ -8,6 +8,7 @@ import ExercisePage from '../pages/ExercisePage';
 import ReviewPage from '../pages/ReviewPage';
 import ProgressPage from '../pages/ProgressPage';
 import TelegramPage from '../pages/TelegramPage';
+import DailyQuizPage from '../pages/DailyQuizPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
@@ -24,6 +25,8 @@ export const router = createBrowserRouter([
             { path: 'review', element: <ReviewPage /> },
             { path: 'progress', element: <ProgressPage /> },
             { path: 'telegram', element: <TelegramPage /> },
+            { path: 'quiz', element: <DailyQuizPage /> },
+            { path: 'quiz/:date', element: <DailyQuizPage /> },
             { path: 'login', element: <LoginPage /> },
             { path: 'register', element: <RegisterPage /> },
         ],

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Topic, Lesson } from '../types';
+import { API_URLS } from '../config/api';
 
 interface TopicState {
     topics: Topic[];
@@ -22,9 +23,9 @@ export const useTopicStore = create<TopicState>((set) => ({
     fetchTopics: async (standard?: 'THEME' | 'HSK' | 'TOCFL') => {
         set({ isLoading: true, error: null });
         try {
-            const url = standard 
-                ? `http://localhost:5000/api/v1/topics?standard=${standard}`
-                : 'http://localhost:5000/api/v1/topics';
+            const url = standard
+                ? `${API_URLS.topics}?standard=${standard}`
+                : API_URLS.topics;
             const res = await fetch(url);
             if (!res.ok) throw new Error('Network response was not ok');
             const data = await res.json();
@@ -53,7 +54,7 @@ export const useTopicStore = create<TopicState>((set) => ({
     fetchLessons: async (topicId: string) => {
         set({ isLoading: true, error: null });
         try {
-            const res = await fetch(`http://localhost:5000/api/v1/topics/${topicId}/lessons`);
+            const res = await fetch(`${API_URLS.topics}/${topicId}/lessons`);
             if (!res.ok) throw new Error('Network response was not ok');
             const data = await res.json();
             const lessons = data.map((l: any) => ({

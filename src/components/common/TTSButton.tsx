@@ -13,7 +13,8 @@ export default function TTSButton({ text, size = 'md', className = '' }: TTSButt
     const { speak } = useTTS();
     const [isPlaying, setIsPlaying] = useState(false);
 
-    const handleClick = () => {
+    const handleClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
         setIsPlaying(true);
         speak(text);
         setTimeout(() => setIsPlaying(false), 1500);

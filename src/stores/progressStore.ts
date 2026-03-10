@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import type { UserProgress } from '../types';
 import { useAuthStore } from './authStore';
+import { API_URLS } from '../config/api';
 
 interface ProgressState {
     progress: UserProgress[];
@@ -14,7 +15,7 @@ interface ProgressState {
     updateProgress: (lessonId: string, topicId: string, score: number) => Promise<void>;
 }
 
-const API_URL = 'http://localhost:5000/api/v1/progress';
+const API_URL = API_URLS.progress;
 
 export const useProgressStore = create<ProgressState>((set, get) => ({
     progress: [],

@@ -177,4 +177,51 @@ router.put('/subscription/:userId', async (req: Request, res: Response) => {
   }
 });
 
+// Get quiz by date
+router.get('/quiz/:date', async (req: Request, res: Response) => {
+  try {
+    const { date } = req.params; // YYYY-MM-DD format
+    const quiz = await DailyQuiz.findOne({ date });
+
+    if (!quiz) {
+      return res.status(404).json({ error: 'Quiz not found for this date' });
+    }
+
+    res.json(quiz);
+  } catch (error) {
+    console.error('[TelegramAPI] Error getting quiz by date:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get user's quiz history
+router.get('/history/:userId', async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const { limit = '30' } = req.query;
+
+    const results = await QuizResult.find({ userId })
+      .sort({ date: -1 })
+      .limit(parseInt(limit as string))
+      .populate('quizId');
+
+    const quizzes = await Promise.all(results.map(async (result) => {
+      const quiz = result.quizId ? await DailyQuiz.findById(result.quizId) : null;
+      return {
+        date: result.date,
+        score: result.score,
+        correctAnswers: result.correctAnswers,
+        totalQuestions: result.totalQuestions,
+        source: result.source,
+        topicName: quiz?.topicName || 'Unknown'
+      };
+    }));
+
+    res.json(quizzes);
+  } catch (error) {
+    console.error('[TelegramAPI] Error getting quiz history:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

@@ -7,6 +7,9 @@ const getTodayDateString = (): string => {
   return new Date().toISOString().split('T')[0];
 };
 
+const WEB_APP_URL = process.env.WEB_APP_URL || 'https://learning-chinese-five.vercel.app/quiz';
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
 export async function handleQuiz(bot: TelegramBot, msg: TelegramBot.Message) {
   const chatId = msg.chat.id;
 
@@ -37,7 +40,8 @@ export async function handleQuiz(bot: TelegramBot, msg: TelegramBot.Message) {
       `📝 Bạn đã hoàn thành bài kiểm tra hôm nay!\n\n` +
       `Điểm số: ${existingResult.score}\n` +
       `Đúng: ${existingResult.correctAnswers}/${existingResult.totalQuestions}\n\n` +
-      ` Quay lại vào ngày mai để làm bài mới!`
+      ` Quay lại vào ngày mai để làm bài mới!\n\n` +
+      `💡 Thử từ ngẫu nhiên: /word`
     );
     return;
   }
@@ -48,34 +52,22 @@ export async function handleQuiz(bot: TelegramBot, msg: TelegramBot.Message) {
   if (!dailyQuiz) {
     bot.sendMessage(chatId,
       `⏰ Bài kiểm tra hôm nay chưa có sẵn.\n\n` +
-      `Vui lòng thử lại sau hoặc liên hệ admin.`
+      `Vui lòng thử lại sau.`
     );
     return;
   }
 
-  // Send quiz questions
-  const questions = dailyQuiz.questions.slice(0, 10); // Send 10 questions at a time
+  // Send link to web app for quiz
+  let message = `📝 Bài kiểm tra hôm nay - ${dailyQuiz.topicName}\n\n`;
+  message += `Có ${dailyQuiz.questions.length} câu hỏi.\n\n`;
 
-  let quizText = `📝 Bài kiểm tra hôm nay - Chủ đề: ${dailyQuiz.topicName}\n\n`;
-  quizText += `Trả lời bằng cách nhấn vào đáp án đúng.\n\n`;
-
-  for (let i = 0; i < questions.length; i++) {
-    const q = questions[i];
-    quizText += `Câu ${i + 1}: ${q.question}\n`;
-    if (q.questionChinese) {
-      quizText += `${q.questionChinese}\n`;
-    }
-    quizText += '\n';
-  }
-
-  // Create inline keyboard for first question
-  const firstQ = questions[0];
+  // Use web_app button (requires HTTPS)
   const keyboard: TelegramBot.InlineKeyboardMarkup = {
-    inline_keyboard: firstQ.options.map((opt, idx) => [{
-      text: opt,
-      callback_data: JSON.stringify({ qIdx: 0, ans: idx, quizId: dailyQuiz._id.toString() })
-    }])
+    inline_keyboard: [[
+      { text: '📝 Làm bài kiểm tra', web_app: { url: WEB_APP_URL } }
+    ]]
   };
-
-  bot.sendMessage(chatId, quizText, { reply_markup: keyboard });
+  message += `📊 Xem điểm: /status\n`;
+  message += `💡 Thử từ ngẫu nhiên: /word`;
+  await bot.sendMessage(chatId, message, { reply_markup: keyboard });
 }

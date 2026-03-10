@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Lesson } from '../types';
+import { API_URLS } from '../config/api';
 
 interface LessonState {
     currentLesson: Lesson | null;
@@ -17,7 +18,7 @@ export const useLessonStore = create<LessonState>((set) => ({
     fetchLesson: async (_topicId: string, lessonId: string) => {
         set({ isLoading: true, error: null });
         try {
-            const res = await fetch(`http://localhost:5000/api/v1/lessons/${lessonId}`);
+            const res = await fetch(`${API_URLS.lessons}/${lessonId}`);
             if (!res.ok) throw new Error('Network response was not ok');
             const l = await res.json();
 

@@ -42,8 +42,7 @@ export default function TelegramPage() {
   };
 
   const getTelegramBotLink = () => {
-    // Replace with your actual bot username after creating it
-    return 'https://t.me/YourBotUsername';
+    return 'https://t.me/learningchineseebot';
   };
 
   if (!isAuthenticated) {
