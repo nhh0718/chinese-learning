@@ -65,19 +65,11 @@ export async function handleRandomWord(bot: TelegramBot, msg: TelegramBot.Messag
     inline_keyboard: [
       shuffledOptions.slice(0, 2).map(item => ({
         text: item.opt,
-        callback_data: JSON.stringify({
-          type: 'word',
-          vocabId: vocab._id.toString(),
-          correct: item.opt === randomQuestion.correctAnswer ? '1' : '0'
-        })
+        callback_data: `w:${vocab._id}:${item.opt === randomQuestion.correctAnswer ? '1' : '0'}`
       })),
       shuffledOptions.slice(2, 4).map(item => ({
         text: item.opt,
-        callback_data: JSON.stringify({
-          type: 'word',
-          vocabId: vocab._id.toString(),
-          correct: item.opt === randomQuestion.correctAnswer ? '1' : '0'
-        })
+        callback_data: `w:${vocab._id}:${item.opt === randomQuestion.correctAnswer ? '1' : '0'}`
       }))
     ]
   };
