@@ -17,11 +17,15 @@ dist-ssr
 .env.local
 .env.*.local
 backend/.env
+.env.example
 
 # Python virtual environments
 .claude/skills/.venv
 .claude/skills/.venv/*
 .opencode/skills/.venv
+
+# Large data files
+backend/data/raw/
 
 # Editor directories and files
 .vscode/*
@@ -33,3 +37,5 @@ backend/.env
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
