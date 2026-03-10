@@ -14,6 +14,12 @@ const toneMap: Record<string, string[]> = {
 export function formatPinyin(pinyin: string): string {
   if (!pinyin) return '';
 
+  // Check if already has tone marks (non-ASCII letters like āáǎà)
+  // If so, return as-is to avoid corruption
+  if (/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜǹńň]/.test(pinyin)) {
+    return pinyin;
+  }
+
   // Handle compound vowels first (shuangpin style: ia -> a, ie -> e, etc)
   let s = pinyin.toLowerCase();
   s = s.replace(/ia/g, 'a').replace(/ie/g, 'e');
