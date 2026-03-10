@@ -41,7 +41,7 @@ router.post('/telegram-login', async (req: Request, res: Response) => {
       user: {
         id: user.id,
         email: user.email,
-        username: user.username
+        username: user.name
       }
     });
   } catch (error) {
