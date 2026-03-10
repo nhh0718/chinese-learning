@@ -1,0 +1,5 @@
+{"ts":"2026-03-10T03:35:51.941Z","hook":"scout-block","tool":"Glob","dur":6,"status":"block","exit":2,"error":""}
+{"ts":"2026-03-10T03:41:24.260Z","hook":"scout-block","tool":"Glob","dur":7,"status":"block","exit":2,"error":""}
+{"ts":"2026-03-10T03:42:34.138Z","hook":"scout-block","tool":"Glob","dur":7,"status":"block","exit":2,"error":""}
+{"ts":"2026-03-10T04:21:05.327Z","hook":"scout-block","tool":"Bash","dur":5,"status":"ok","exit":0,"error":""}
+{"ts":"2026-03-10T04:21:13.232Z","hook":"scout-block","tool":"Bash","dur":6,"status":"ok","exit":0,"error":""}

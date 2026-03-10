@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\\\\backend\" && npm install)",
+      "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\\\\backend\" && npm run build 2>&1)",
+      "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\" && npm run build 2>&1 | head -50)"
+    ]
+  }
+}

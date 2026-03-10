@@ -1,0 +1,293 @@
+.telegram-page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.telegram-page__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.telegram-page__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.telegram-page__title-cn {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+.telegram-page__subtitle {
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.telegram-page__unauthorized {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.telegram-page__icon {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Points Card */
+.telegram-points-card {
+  background: linear-gradient(135deg, var(--color-accent-jade), #3d9970);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(92, 178, 112, 0.3);
+}
+
+.telegram-points-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.telegram-points-card__header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.telegram-points-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.telegram-points-card__stat {
+  text-align: center;
+}
+
+.telegram-points-card__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.telegram-points-card__streak-icon {
+  color: #ff6b35;
+}
+
+.telegram-points-card__label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.telegram-points-card__divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.telegram-points-card__status {
+  display: flex;
+  justify-content: center;
+}
+
+.telegram-points-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.telegram-points-card__badge--success {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.telegram-points-card__badge--warning {
+  background: rgba(255, 193, 7, 0.3);
+  color: #fff3cd;
+}
+
+/* Sections */
+.telegram-section {
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.telegram-section__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.telegram-section__header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.telegram-section__info {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.telegram-section__steps {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.telegram-section__steps li {
+  margin-bottom: 0.5rem;
+}
+
+.telegram-section__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-bg-primary);
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.telegram-section__link:hover {
+  background: var(--color-bg-hover);
+}
+
+.telegram-section__link--primary {
+  background: var(--color-accent-jade);
+  color: white;
+}
+
+.telegram-section__link--primary:hover {
+  background: #4a9d5f;
+}
+
+/* Connection Status */
+.telegram-section__status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.telegram-section__status-icon--success {
+  color: var(--color-accent-jade);
+}
+
+/* Settings */
+.telegram-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.telegram-setting__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.telegram-setting__control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.telegram-setting__time-input {
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--color-bg-primary);
+  color: var(--color-text);
+}
+
+.telegram-setting__save-btn {
+  padding: 0.5rem 1rem;
+  background: var(--color-accent-jade);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.telegram-setting__save-btn:hover {
+  background: #4a9d5f;
+}
+
+.telegram-setting__save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.telegram-setting__description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* How it works */
+.telegram-how-it-works {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.telegram-how-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.telegram-how-item__number {
+  width: 32px;
+  height: 32px;
+  background: var(--color-accent-jade);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.telegram-how-item__content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.telegram-how-item__content p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}

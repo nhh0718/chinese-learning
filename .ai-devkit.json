@@ -1,0 +1,27 @@
+{
+  "version": "0.16.0",
+  "environments": [
+    "antigravity"
+  ],
+  "phases": [
+    "requirements",
+    "design",
+    "planning",
+    "implementation",
+    "testing",
+    "deployment",
+    "monitoring"
+  ],
+  "createdAt": "2026-03-09T15:07:42.102Z",
+  "updatedAt": "2026-03-09T15:08:51.355Z",
+  "skills": [
+    {
+      "registry": "anthropics/skills",
+      "name": "skill-creator"
+    },
+    {
+      "registry": "anthropics/skills",
+      "name": "frontend-design"
+    }
+  ]
+}

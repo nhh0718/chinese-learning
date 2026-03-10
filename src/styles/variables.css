@@ -1,0 +1,188 @@
+/* ===== INK & JADE · Claymorphism Design System ===== */
+/* East-Asian elegance meets soft 3D claymorphism — education-focused */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap');
+
+:root {
+  /* === Color Palette === */
+  /* Dark Theme (default) */
+  --color-bg-primary: #0d1210;
+  --color-bg-secondary: #131c18;
+  --color-bg-tertiary: #1a2820;
+  --color-bg-card: #1e3028;
+  --color-bg-card-hover: #253d32;
+  --color-bg-elevated: rgba(30, 48, 40, 0.92);
+  --color-bg-overlay: rgba(13, 18, 16, 0.92);
+
+  --color-text-primary: #eaf2e8;
+  --color-text-secondary: #a8c4a0;
+  --color-text-tertiary: #6f9268;
+  --color-text-muted: #4d6a48;
+
+  --color-accent-jade: #5cb270;
+  --color-accent-jade-light: #7ec98e;
+  --color-accent-jade-glow: rgba(92, 178, 112, 0.2);
+  --color-accent-celadon: #ace1af;
+  --color-accent-gold: #d4a843;
+  --color-accent-gold-light: #e8c76a;
+  --color-accent-coral: #e07a5f;
+  --color-accent-ink: #1a1a2e;
+
+  --color-border: rgba(92, 178, 112, 0.12);
+  --color-border-strong: rgba(92, 178, 112, 0.28);
+
+  --color-success: #5cb270;
+  --color-error: #e07a5f;
+  --color-warning: #d4a843;
+  --color-info: #6bbcd4;
+
+  /* Gradients */
+  --gradient-jade: linear-gradient(135deg, #5cb270 0%, #3a8f52 100%);
+  --gradient-gold: linear-gradient(135deg, #d4a843 0%, #b88a2e 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(13, 18, 16, 0) 0%, rgba(13, 18, 16, 0.8) 100%);
+  --gradient-card: linear-gradient(145deg, rgba(30, 48, 40, 0.9) 0%, rgba(19, 28, 24, 0.95) 100%);
+
+  /* === Typography (Noto Serif TC + Noto Sans TC) === */
+  --font-display: 'Noto Serif TC', 'Crimson Pro', Georgia, serif;
+  --font-body: 'Noto Sans TC', 'DM Sans', system-ui, sans-serif;
+  --font-chinese: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+  --font-chinese-serif: 'Noto Serif TC', 'Songti TC', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-hero: clamp(2.5rem, 6vw, 5rem);
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* === Spacing === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* === Layout === */
+  --max-width: 1200px;
+  --max-width-narrow: 800px;
+  --navbar-height: 72px;
+  --navbar-offset: 16px;
+  --sidebar-width: 280px;
+
+  /* === Borders (Claymorphism: rounded 16-24px) === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* === Shadows (Claymorphism: inner+outer, soft 3D) === */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.4),
+    0 8px 16px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 24px rgba(92, 178, 112, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-glow-strong: 0 0 40px rgba(92, 178, 112, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+  /* Claymorphism inner shadow for pressed/inset elements */
+  --shadow-clay-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+  --shadow-clay-card: 0 6px 20px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* === Transitions === */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 350ms ease;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* === Z-Index === */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-navbar: 300;
+  --z-modal-overlay: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+
+  /* === Focus Ring === */
+  --focus-ring: 0 0 0 3px rgba(92, 178, 112, 0.5);
+  --focus-ring-offset: 0 0 0 2px var(--color-bg-primary), 0 0 0 4px rgba(92, 178, 112, 0.5);
+}
+
+/* ===== Light Theme ===== */
+[data-theme="light"] {
+  --color-bg-primary: #f7f3ec;
+  --color-bg-secondary: #eee9df;
+  --color-bg-tertiary: #e5dfd4;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #fbf9f5;
+  --color-bg-elevated: rgba(255, 255, 255, 0.95);
+  --color-bg-overlay: rgba(247, 243, 236, 0.96);
+
+  /* Higher contrast for light mode — minimum 4.5:1 */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-tertiary: #64748b;
+  --color-text-muted: #94a3b8;
+
+  --color-accent-jade: #2d8244;
+  --color-accent-jade-light: #5cb270;
+  --color-accent-jade-glow: rgba(45, 130, 68, 0.12);
+  --color-accent-celadon: #7ec98e;
+  --color-accent-gold: #a67c1f;
+  --color-accent-gold-light: #d4a843;
+
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-border-strong: rgba(15, 23, 42, 0.2);
+
+  --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(251, 249, 245, 1) 100%);
+
+  /* Light mode claymorphism shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 24px rgba(45, 130, 68, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-glow-strong: 0 0 40px rgba(45, 130, 68, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-clay-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.8);
+  --shadow-clay-card: 0 6px 20px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}

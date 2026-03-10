@@ -1,0 +1,190 @@
+.lesson-page__loading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.lesson-page__not-found {
+    text-align: center;
+    padding: var(--space-16) 0;
+    color: var(--color-text-tertiary);
+}
+
+.lesson-page__not-found a {
+    display: inline-block;
+    margin-top: var(--space-4);
+    color: var(--color-accent-jade);
+}
+
+/* Header */
+.lesson-page__header {
+    margin-bottom: var(--space-10);
+}
+
+.lesson-page__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-4);
+    transition: color var(--transition-fast);
+}
+
+.lesson-page__back:hover {
+    color: var(--color-accent-jade);
+}
+
+.lesson-page__title-wrap {
+    margin-bottom: var(--space-4);
+}
+
+.lesson-page__title {
+    font-size: var(--text-3xl);
+    font-weight: 300;
+    margin-bottom: var(--space-2);
+    letter-spacing: 0.05em;
+}
+
+.lesson-page__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+}
+
+.lesson-page__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Sections */
+.lesson-section {
+    margin-bottom: var(--space-12);
+}
+
+.lesson-section__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.lesson-section__icon {
+    color: var(--color-accent-jade);
+    flex-shrink: 0;
+}
+
+.lesson-section__icon--gold {
+    color: var(--color-accent-gold);
+}
+
+.lesson-section__title {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    flex: 1;
+}
+
+.lesson-section__count {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Vocab Grid */
+.lesson-page__vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-4);
+}
+
+/* Sentences */
+.lesson-page__sentences {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Cultural Note */
+.lesson-page__cultural-note {
+    padding: var(--space-5);
+    background: color-mix(in srgb, var(--color-accent-gold) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent-gold) 20%, transparent);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* Exercise CTA */
+.lesson-page__exercise-cta {
+    text-align: center;
+    padding: var(--space-8) 0;
+}
+
+.lesson-page__exercise-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-10);
+    background: var(--gradient-jade);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(92, 178, 112, 0.3);
+    transition: all var(--transition-base);
+}
+
+.lesson-page__exercise-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(92, 178, 112, 0.4);
+    color: #fff;
+}
+
+/* Other Lessons */
+.lesson-page__other-lessons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.lesson-page__other-lesson {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+}
+
+.lesson-page__other-lesson:hover {
+    border-color: var(--color-accent-jade);
+    box-shadow: var(--shadow-sm);
+}
+
+.lesson-page__other-lesson-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+}
+
+@media (max-width: 768px) {
+    .lesson-page__vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-page__title {
+        font-size: var(--text-2xl);
+    }
+}

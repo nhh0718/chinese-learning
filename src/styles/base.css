@@ -1,0 +1,212 @@
+/* ===== Base Reset & Defaults ===== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: var(--leading-normal);
+    transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* ===== Focus Ring (Keyboard Navigation) ===== */
+:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+}
+
+/* ===== Interactive Elements ===== */
+a {
+    color: var(--color-accent-jade);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-accent-jade-light);
+}
+
+/* cursor:pointer on all interactive elements */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+label[for],
+.clickable {
+    cursor: pointer;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    background: none;
+    outline: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+h1 {
+    font-size: var(--text-4xl);
+    letter-spacing: var(--tracking-tight);
+}
+
+h2 {
+    font-size: var(--text-2xl);
+}
+
+h3 {
+    font-size: var(--text-xl);
+}
+
+h4 {
+    font-size: var(--text-lg);
+}
+
+p {
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+}
+
+/* ===== Input & Form Elements ===== */
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* ===== Utilities ===== */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.container--narrow {
+    max-width: var(--max-width-narrow);
+}
+
+.page {
+    padding-top: calc(var(--navbar-height) + var(--navbar-offset) * 2 + var(--space-8));
+    padding-bottom: var(--space-16);
+    min-height: 100vh;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+/* ===== Chinese Text ===== */
+.chinese-text {
+    font-family: var(--font-chinese);
+    line-height: 1.6;
+}
+
+.chinese-text--serif {
+    font-family: var(--font-chinese-serif);
+}
+
+/* Annotation badges */
+.annotation {
+    display: inline-block;
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+}
+
+.annotation--pinyin {
+    color: var(--color-accent-jade);
+    background: var(--color-accent-jade-glow);
+}
+
+.annotation--zhuyin {
+    color: var(--color-accent-gold);
+    background: rgba(212, 168, 67, 0.15);
+}
+
+/* ===== Scrollbar (dark theme) ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+/* ===== Prefers Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== Selection ===== */
+::selection {
+    background: var(--color-accent-jade-glow);
+    color: var(--color-text-primary);
+}

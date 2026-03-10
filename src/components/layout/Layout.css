@@ -1,0 +1,23 @@
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+}
+
+.footer__text {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+}
+
+.footer__chinese {
+    font-family: var(--font-chinese);
+    color: var(--color-accent-jade);
+    font-weight: 500;
+}
