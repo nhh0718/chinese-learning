@@ -11,6 +11,28 @@ interface VocabularyCardProps {
     index?: number;
 }
 
+function EmbeddedPinyinText({ text }: { text: string }) {
+    if (!text) return null;
+    
+    // Split by words ending in 1-5, capturing the group so it resolves into array chunks
+    const parts = text.split(/(\b[a-zA-ZüÜ]+[1-5]\b)/g);
+    
+    return (
+        <>
+            {parts.map((part, i) => {
+                if (/^[a-zA-ZüÜ]+[1-5]$/.test(part)) {
+                    return (
+                        <span key={i} className="embedded-pinyin">
+                            {formatPinyin(part)}
+                        </span>
+                    );
+                }
+                return part;
+            })}
+        </>
+    );
+}
+
 export default function VocabularyCard({ vocab, index = 0 }: VocabularyCardProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
@@ -47,12 +69,16 @@ export default function VocabularyCard({ vocab, index = 0 }: VocabularyCardProps
                 <div className="vocab-card__face vocab-card__front vocab-card--small">
                     <div className="vocab-card__character chinese-text">{vocab.character}</div>
                     <div className="vocab-card__annotations">
-                        <span className="vocab-card__pinyin annotation annotation--pinyin">
-                            {formatPinyin(vocab.pinyin)}
-                        </span>
-                        <span className="vocab-card__zhuyin annotation annotation--zhuyin">
-                            {vocab.zhuyin}
-                        </span>
+                        {vocab.pinyin && (
+                            <span className="vocab-card__pinyin annotation annotation--pinyin">
+                                {formatPinyin(vocab.pinyin)}
+                            </span>
+                        )}
+                        {vocab.zhuyin && (
+                            <span className="vocab-card__zhuyin annotation annotation--zhuyin">
+                                {vocab.zhuyin}
+                            </span>
+                        )}
                     </div>
                     <TTSButton text={vocab.character} size="sm" className="vocab-card__tts" />
                     <span className="vocab-card__hint">tap to open</span>
@@ -86,12 +112,16 @@ export default function VocabularyCard({ vocab, index = 0 }: VocabularyCardProps
                                 <div className="vocab-card__face vocab-card__front">
                                     <div className="vocab-card__character chinese-text">{vocab.character}</div>
                                     <div className="vocab-card__annotations">
-                                        <span className="vocab-card__pinyin annotation annotation--pinyin">
-                                            {formatPinyin(vocab.pinyin)}
-                                        </span>
-                                        <span className="vocab-card__zhuyin annotation annotation--zhuyin">
-                                            {vocab.zhuyin}
-                                        </span>
+                                        {vocab.pinyin && (
+                                            <span className="vocab-card__pinyin annotation annotation--pinyin">
+                                                {formatPinyin(vocab.pinyin)}
+                                            </span>
+                                        )}
+                                        {vocab.zhuyin && (
+                                            <span className="vocab-card__zhuyin annotation annotation--zhuyin">
+                                                {vocab.zhuyin}
+                                            </span>
+                                        )}
                                     </div>
                                     <TTSButton text={vocab.character} size="lg" className="vocab-card__tts" />
                                     <span className="vocab-card__hint">tap to flip</span>
@@ -100,16 +130,16 @@ export default function VocabularyCard({ vocab, index = 0 }: VocabularyCardProps
                                 {/* Back */}
                                 <div className="vocab-card__face vocab-card__back">
                                     <div className="vocab-card__meaning-vi-modal">
-                                        {vocab.meaningVi || vocab.meaning}
+                                        <EmbeddedPinyinText text={vocab.meaningVi || vocab.meaning} />
                                     </div>
                                     {vocab.meaning.includes('[') && (
                                         <div className="vocab-card__hanviet">
-                                            {vocab.meaning.substring(vocab.meaning.indexOf('['))}
+                                            <EmbeddedPinyinText text={vocab.meaning.substring(vocab.meaning.indexOf('['))} />
                                         </div>
                                     )}
                                     {vocab.exampleSentences.length > 0 && (
                                         <div className="vocab-card__example-modal">
-                                            <span className="vocab-card__example-label">Example:</span>
+                                            <span className="vocab-card__example-label">Example</span>
                                             <span className="vocab-card__example-text-modal chinese-text">
                                                 {vocab.exampleSentences[0]}
                                             </span>

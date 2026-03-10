@@ -82,11 +82,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-4);
+    gap: var(--space-5);
     padding: var(--space-6);
     background: var(--gradient-card);
     border: 1px solid var(--color-border);
     border-radius: inherit; /* inherit from grid item or modal container */
+    text-align: center;
 }
 
 /* When absolute (inside the 3D flipping container) */
@@ -111,6 +112,8 @@
     background: var(--color-bg-card);
     border-color: var(--color-accent-jade);
     box-shadow: var(--shadow-glow-strong);
+    padding: var(--space-10) var(--space-6) var(--space-6);
+    justify-content: flex-start; /* Push content up slightly for better reading flow */
 }
 
 /* Grid Item relative sizing (the front face acts as a block) */
@@ -118,6 +121,8 @@
     width: 100%;
     height: 100%;
     border-radius: var(--radius-xl);
+    justify-content: center;
+    gap: var(--space-4);
 }
 .vocab-card-grid-item .vocab-card__front {
     box-shadow: var(--shadow-clay-card);
@@ -130,36 +135,47 @@
 /* Elements Inside Card */
 .vocab-card__character {
     font-family: var(--font-chinese-serif);
-    font-weight: 400;
-    letter-spacing: 0.12em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
     color: var(--color-text-primary);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .vocab-card-grid-item .vocab-card__character {
-    font-size: var(--text-4xl);
+    font-size: 3.5rem;
+    line-height: 1;
 }
 
 .vocab-card--modal .vocab-card__character {
-    font-size: 5rem;
+    font-size: 6rem;
+    line-height: 1.1;
+    margin-bottom: var(--space-2);
 }
 
 .vocab-card__annotations {
     display: flex;
     align-items: center;
-    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    width: 100%;
 }
 
 .vocab-card__pinyin {
-    background: var(--color-accent-jade-glow);
-    color: var(--color-accent-jade);
-    border-radius: var(--radius-sm);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--color-bg-tertiary);
+    color: var(--color-accent-jade-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
     font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .vocab-card__zhuyin {
-    background: rgba(212, 168, 67, 0.12);
-    color: var(--color-accent-gold);
-    border-radius: var(--radius-sm);
+    background: rgba(212, 168, 67, 0.08);
+    color: var(--color-accent-gold-light);
+    border: 1px solid rgba(212, 168, 67, 0.2);
+    border-radius: var(--radius-full);
     font-weight: 500;
 }
 
@@ -171,94 +187,137 @@
 
 .vocab-card--modal .vocab-card__pinyin,
 .vocab-card--modal .vocab-card__zhuyin {
-    font-size: var(--text-lg);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-md);
+    font-size: var(--text-xl);
+    padding: var(--space-2) var(--space-5);
 }
 
 .vocab-card__tts {
     position: absolute;
-    top: var(--space-3);
-    right: var(--space-3);
+    top: var(--space-4);
+    right: var(--space-4);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+}
+
+.vocab-card__tts:hover {
+    background: var(--color-accent-jade-glow);
+    color: var(--color-accent-jade-light);
+    border-color: var(--color-accent-jade);
+    transform: scale(1.05);
 }
 
 .vocab-card__hint {
     position: absolute;
-    bottom: var(--space-3);
-    font-size: 0.7rem;
-    color: var(--color-text-muted);
+    bottom: var(--space-4);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
-    opacity: 0.5;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    font-weight: 500;
 }
 
 /* Back Face Elements (Modal Only usually) */
 .vocab-card__meaning-vi-modal {
     font-family: var(--font-body);
-    font-size: var(--text-2xl);
-    font-weight: 500;
+    font-size: 1.65rem;
+    font-weight: 400;
     color: var(--color-text-primary);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.7;
+    white-space: pre-line; /* Respect data newlines */
     word-break: break-word;
-    /* Optional clamp for extremely long strings even in modal */
-    display: -webkit-box;
-    -webkit-line-clamp: 8;
-    line-clamp: 8;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    width: 100%;
+    padding: 0 var(--space-2);
+    /* Allow scrolling instead of clamping visually to save long definitions */
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+}
+.vocab-card__meaning-vi-modal::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .vocab-card__hanviet {
-    font-size: var(--text-base);
-    color: var(--color-accent-jade);
-    background: var(--color-accent-jade-glow);
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-sm);
-    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Standard default sans font for perfect Pinyin rendering */
+    font-size: 0.95rem; /* Slightly larger since not uppercase */
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-weight: 500;
     letter-spacing: 0.05em;
-    margin-top: -4px;
+    margin-top: var(--space-2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+}
+
+.embedded-pinyin {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--color-accent-jade);
+    letter-spacing: 0.02em;
+    font-weight: 500;
 }
 
 .vocab-card__example-modal {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: auto; 
+    margin-bottom: var(--space-6);
     width: 100%;
+    padding: var(--space-5);
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(20, 184, 166, 0.02) 100%);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--color-accent-jade);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .vocab-card__example-label {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    color: var(--color-accent-jade);
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
+    letter-spacing: 0.25em;
+    font-weight: 700;
 }
 
 .vocab-card__example-text-modal {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    text-align: center;
-    line-height: 1.4;
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+    text-align: left;
+    line-height: 1.6;
+    width: 100%;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    font-family: var(--font-chinese-serif);
 }
 
 @media (max-width: 768px) {
     .vocab-card--modal {
-        height: 380px;
+        height: 420px;
     }
     
     .vocab-card--modal .vocab-card__character {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 
     .vocab-card__meaning-vi-modal {
-        font-size: var(--text-xl);
+        font-size: 1.4rem;
         -webkit-line-clamp: 6;
         line-clamp: 6;
     }
+
+    .vocab-card__example-text-modal {
+        font-size: 1.15rem;
+    }
     
     .vocab-modal-close {
-        top: -50px;
+        top: -55px;
+        right: 0;
     }
 }

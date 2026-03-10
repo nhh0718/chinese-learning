@@ -12,6 +12,7 @@ interface AuthState {
   register: (credentials: any) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  setAuth: (user: User, token: string) => void;
 }
 
 const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/v1/auth`;
@@ -73,6 +74,10 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false });
+      },
+
+      setAuth: (user, token) => {
+        set({ user, token, isAuthenticated: true, isLoading: false });
       },
 
       clearError: () => {

@@ -4,8 +4,51 @@ import User from '../models/User';
 import DailyQuiz from '../models/DailyQuiz';
 import QuizResult from '../models/QuizResult';
 import { generateQuizNow } from '../services/quiz-generator';
+import { generateToken } from '../utils/generateToken';
 
 const router = express.Router();
+
+// Telegram auto-login endpoint
+router.post('/telegram-login', async (req: Request, res: Response) => {
+  try {
+    const { telegramChatId } = req.body;
+
+    if (!telegramChatId) {
+      return res.status(400).json({ error: 'Missing telegramChatId' });
+    }
+
+    // Find subscription by telegram chat id
+    const subscription = await TelegramSubscription.findOne({
+      telegramChatId: telegramChatId.toString(),
+      isActive: true
+    });
+
+    if (!subscription) {
+      return res.status(404).json({ error: 'User not found. Please /subscribe first.' });
+    }
+
+    // Find user
+    const user = await User.findById(subscription.userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Generate token for auto-login
+    const token = generateToken(user.id);
+
+    res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username
+      }
+    });
+  } catch (error) {
+    console.error('[TelegramAPI] Error in telegram-login:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // Get today's quiz
 router.get('/daily-quiz', async (req: Request, res: Response) => {

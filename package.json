@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:all": "npm run dev -- --port 5177 & cd backend && npm run dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -12,6 +13,8 @@
   "dependencies": {
     "framer-motion": "^12.35.2",
     "lucide-react": "^0.577.0",
+    "pinyin": "^4.0.0",
+    "pinyin-pro": "^3.28.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.1",

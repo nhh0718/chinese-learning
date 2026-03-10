@@ -3,7 +3,23 @@
     "allow": [
       "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\\\\backend\" && npm install)",
       "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\\\\backend\" && npm run build 2>&1)",
-      "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\" && npm run build 2>&1 | head -50)"
+      "Bash(cd \"E:\\\\Code-Fun\\\\learning-chinese\" && npm run build 2>&1 | head -50)",
+      "Bash(cd E:/Code-Fun/learning-chinese && npm run build 2>&1 | head -30)",
+      "Bash(cd E:/Code-Fun/learning-chinese && npm run build 2>&1)",
+      "Bash(cd E:/Code-Fun/learning-chinese/backend && npm run build 2>&1)",
+      "Bash(taskkill /F /IM node.exe 2>nul; echo \"Backend stopped\")",
+      "Bash(netstat -ano | findstr \"5000\" 2>nul | head -2)",
+      "Bash(netstat -ano | findstr \":5000\" 2>nul)",
+      "Bash(powershell -Command \"Stop-Process -Id 40288 -Force\" 2>nul; sleep 1; netstat -ano | findstr \":5000\" 2>nul | head -2)",
+      "Bash(taskkill /F /IM node.exe 2>nul; sleep 2)",
+      "Bash(taskkill /F /IM node.exe 2>nul; echo \"Stopped\")",
+      "Bash(ls -la E:/Code-Fun/learning-chinese/*.json 2>/dev/null | head -5)",
+      "Bash(ls E:/Code-Fun/learning-chinese/vite.config.* 2>/dev/null)",
+      "Bash(netstat -ano | findstr \":5173 :5000\" | head -6)",
+      "Bash(netstat -ano | findstr \":5173 LISTENING\" | head -1)",
+      "Bash(netstat -ano | findstr \"5173\")",
+      "Bash(taskkill /PID 30572 /F 2>nul; sleep 1)",
+      "Bash(sleep 4 && netstat -ano | findstr \"5173\")"
     ]
   }
 }

@@ -7,7 +7,7 @@ const getTodayDateString = (): string => {
   return new Date().toISOString().split('T')[0];
 };
 
-const WEB_APP_URL = process.env.WEB_APP_URL || 'https://learning-chinese-five.vercel.app/quiz';
+const WEB_APP_URL = process.env.WEB_APP_URL || 'https://dist-phi-ruddy.vercel.app/quiz';
 const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 export async function handleQuiz(bot: TelegramBot, msg: TelegramBot.Message) {
@@ -57,14 +57,17 @@ export async function handleQuiz(bot: TelegramBot, msg: TelegramBot.Message) {
     return;
   }
 
-  // Send link to web app for quiz
+  // Send link to web app for quiz with user info for auto-login
+  const userId = subscription.userId;
+  const quizUrl = `${WEB_APP_URL}?userId=${userId}&telegramChatId=${chatId}`;
+
   let message = `📝 Bài kiểm tra hôm nay - ${dailyQuiz.topicName}\n\n`;
   message += `Có ${dailyQuiz.questions.length} câu hỏi.\n\n`;
 
   // Use web_app button (requires HTTPS)
   const keyboard: TelegramBot.InlineKeyboardMarkup = {
     inline_keyboard: [[
-      { text: '📝 Làm bài kiểm tra', web_app: { url: WEB_APP_URL } }
+      { text: '📝 Làm bài kiểm tra', web_app: { url: quizUrl } }
     ]]
   };
   message += `📊 Xem điểm: /status\n`;

@@ -4,13 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, CheckCircle, XCircle, ArrowRight, Trophy } from 'lucide-react';
 import { useTelegramStore } from '../stores/telegramStore';
 import { useAuthStore } from '../stores/authStore';
+import { API_URLS } from '../config/api';
 import type { DailyQuizQuestion } from '../types';
 import './DailyQuizPage.css';
 
 export default function DailyQuizPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { user } = useAuthStore();
+  const { user, setAuth } = useAuthStore();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const {
     dailyQuiz,
     isQuizLoading,
@@ -26,6 +28,32 @@ export default function DailyQuizPage() {
   const [showResults, setShowResults] = useState(false);
 
   const date = searchParams.get('date') || undefined;
+  const telegramChatId = searchParams.get('telegramChatId');
+
+  // Auto-login via Telegram
+  useEffect(() => {
+    const telegramLogin = async () => {
+      if (!user && telegramChatId && !isLoggingIn) {
+        setIsLoggingIn(true);
+        try {
+          const res = await fetch(`${API_URLS.telegram}/telegram-login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ telegramChatId })
+          });
+          const data = await res.json();
+          if (data.token && data.user) {
+            setAuth(data.user, data.token);
+          }
+        } catch (err) {
+          console.error('Telegram auto-login failed:', err);
+        } finally {
+          setIsLoggingIn(false);
+        }
+      }
+    };
+    telegramLogin();
+  }, [telegramChatId, user, isLoggingIn, setAuth]);
 
   useEffect(() => {
     if (date) {
