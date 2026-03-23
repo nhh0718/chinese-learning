@@ -110,6 +110,78 @@ export interface ReviewStats {
   reviewedToday: number;
 }
 
+// ===== Mock Test Types =====
+
+export interface MockQuestion {
+  type: string;
+  question: string;
+  questionChinese?: string;
+  audioText?: string;
+  passage?: string;
+  options: string[];
+  correctAnswer: string;
+  explanation?: string;
+}
+
+export interface MockSection {
+  type: 'listening' | 'reading' | 'vocabulary';
+  weight: number;
+  questions: MockQuestion[];
+}
+
+export interface MockTest {
+  _id: string;
+  title: string;
+  standard: string;
+  level: number;
+  duration_minutes: number;
+  sections: MockSection[];
+  total_questions: number;
+}
+
+export interface MockTestListItem {
+  _id: string;
+  title: string;
+  standard: string;
+  level: number;
+  duration_minutes: number;
+  total_questions: number;
+}
+
+export interface MockTestAnswer {
+  sectionIndex: number;
+  questionIndex: number;
+  answer: string;
+}
+
+export interface SectionResult {
+  type: string;
+  score: number;
+  total: number;
+  answers: { questionIndex: number; answer: string; correct: boolean }[];
+}
+
+export interface MockTestResult {
+  _id: string;
+  user_id: string;
+  test_id: any;
+  started_at: string;
+  submitted_at: string;
+  time_spent_seconds: number;
+  sections: SectionResult[];
+  total_score: number;
+  total_possible: number;
+  percentage: number;
+}
+
+export interface ReadinessData {
+  readiness: number;
+  vocabMastery: number;
+  avgTestScore: number;
+  totalVocab: number;
+  masteredVocab: number;
+}
+
 export interface DailyWord {
   character: string;
   pinyin: string;

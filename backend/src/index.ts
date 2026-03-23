@@ -22,6 +22,7 @@ import authRoutes from './routes/auth';
 import progressRoutes from './routes/progress';
 import telegramRoutes from './routes/telegram';
 import reviewRoutes from './routes/review';
+import mockTestRoutes from './routes/mock-tests';
 
 app.use('/api/v1/topics', topicRoutes);
 app.use('/api/v1/lessons', lessonRoutes);
@@ -30,6 +31,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/progress', progressRoutes);
 app.use('/api/v1/telegram', telegramRoutes);
 app.use('/api/v1/review', reviewRoutes);
+app.use('/api/v1/mock-tests', mockTestRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

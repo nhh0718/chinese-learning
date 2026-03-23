@@ -13,6 +13,10 @@ import ReviewAnalyticsPage from '../pages/ReviewAnalyticsPage';
 import ProgressPage from '../pages/ProgressPage';
 import TelegramPage from '../pages/TelegramPage';
 import DailyQuizPage from '../pages/DailyQuizPage';
+import MockTestListPage from '../pages/MockTestListPage';
+import MockTestSessionPage from '../pages/MockTestSessionPage';
+import MockTestResultPage from '../pages/MockTestResultPage';
+import MockTestHistoryPage from '../pages/MockTestHistoryPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
@@ -31,6 +35,10 @@ export const router = createBrowserRouter([
             { path: 'flashcards/session', element: <FlashcardSessionPage /> },
             { path: 'word-list', element: <WordListPage /> },
             { path: 'analytics', element: <ReviewAnalyticsPage /> },
+            { path: 'mock-tests', element: <MockTestListPage /> },
+            { path: 'mock-tests/history', element: <MockTestHistoryPage /> },
+            { path: 'mock-tests/:testId', element: <MockTestSessionPage /> },
+            { path: 'mock-tests/:testId/result', element: <MockTestResultPage /> },
             { path: 'progress', element: <ProgressPage /> },
             { path: 'telegram', element: <TelegramPage /> },
             { path: 'quiz', element: <DailyQuizPage /> },

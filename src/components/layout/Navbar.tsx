@@ -15,7 +15,7 @@ export default function Navbar() {
         { path: '/', label: 'Home' },
         { path: '/topics', label: 'Topics' },
         { path: '/flashcards', label: 'Flashcards' },
-        { path: '/review', label: 'Review' },
+        { path: '/mock-tests', label: 'Exam Prep' },
         { path: '/progress', label: 'Progress' },
     ];
 

@@ -1,0 +1,48 @@
+.mock-result__back {
+  display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-6);
+  color: var(--color-text-secondary); font-size: var(--text-sm);
+}
+.mock-result__back:hover { color: var(--color-accent-jade); }
+
+.mock-result__header { text-align: center; margin-bottom: var(--space-8); }
+.mock-result__score { font-size: 4rem; font-weight: 800; font-family: var(--font-display); }
+.mock-result__score--pass { color: var(--color-success); }
+.mock-result__score--fail { color: #ef4444; }
+.mock-result__verdict { font-size: var(--text-xl); font-weight: 600; margin-bottom: var(--space-2); }
+.mock-result__meta { color: var(--color-text-secondary); }
+
+.mock-result__sections { display: flex; flex-direction: column; gap: var(--space-6); margin-bottom: var(--space-8); }
+.mock-result-section {
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl); padding: var(--space-5);
+}
+.mock-result-section__header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: var(--space-4); text-transform: capitalize;
+}
+.mock-result-section__score { font-weight: 600; color: var(--color-accent-jade); }
+
+.mock-result-section__wrong h4 {
+  font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3);
+}
+
+.mock-wrong-item {
+  padding: var(--space-3); margin-bottom: var(--space-2);
+  background: var(--color-bg-elevated); border-radius: var(--radius-md);
+}
+.mock-wrong-item__q { display: flex; align-items: center; gap: var(--space-2); font-weight: 500; margin-bottom: var(--space-1); }
+.mock-wrong-icon { color: #ef4444; flex-shrink: 0; }
+.mock-wrong-item__answers {
+  display: flex; gap: var(--space-4); font-size: var(--text-sm); margin-bottom: var(--space-1);
+}
+.mock-wrong-item__yours { color: #ef4444; }
+.mock-wrong-item__correct { display: flex; align-items: center; gap: 4px; color: var(--color-success); }
+.mock-wrong-item__explanation { font-size: var(--text-xs); color: var(--color-text-tertiary); font-style: italic; }
+
+.mock-result__actions { display: flex; justify-content: center; }
+.mock-result__btn {
+  padding: var(--space-3) var(--space-8); background: var(--gradient-jade);
+  color: #fff; font-weight: 600; border-radius: var(--radius-md);
+}
+
+.mock-result-empty { text-align: center; padding: var(--space-16) 0; color: var(--color-text-secondary); }

@@ -8,6 +8,7 @@ export const API_URLS = {
   progress: `${API_BASE_URL}/api/v1/progress`,
   telegram: `${API_BASE_URL}/api/v1/telegram`,
   review: `${API_BASE_URL}/api/v1/review`,
+  mockTests: `${API_BASE_URL}/api/v1/mock-tests`,
 };
 
 export default API_BASE_URL;
