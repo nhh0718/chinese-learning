@@ -18,13 +18,15 @@ router.get('/due', async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user._id;
     const now = new Date();
+    const limit = Math.min(Number(req.query.limit) || 50, 200);
+    const stateFilter = req.query.state as string | undefined;
 
-    const dueCards = await VocabularyProgress.find({
-      user_id: userId,
-      due: { $lte: now }
-    })
+    const query: any = { user_id: userId, due: { $lte: now } };
+    if (stateFilter) query.state = stateFilter;
+
+    const dueCards = await VocabularyProgress.find(query)
       .sort({ due: 1 })
-      .limit(50)
+      .limit(limit)
       .populate('vocabulary_id');
 
     // Format response with vocabulary data + FSRS state
@@ -193,6 +195,134 @@ router.post('/init', async (req: Request, res: Response) => {
   } catch (error: any) {
     console.error('[Review] Error initializing cards:', error.message);
     res.status(500).json({ message: 'Failed to initialize cards' });
+  }
+});
+
+/**
+ * POST /api/v1/review/bookmark
+ * Toggle bookmark for a vocabulary item.
+ * Body: { vocabularyId: string }
+ */
+router.post('/bookmark', async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user._id;
+    const { vocabularyId } = req.body;
+    if (!vocabularyId) return res.status(400).json({ message: 'vocabularyId required' });
+
+    let progress = await VocabularyProgress.findOne({ user_id: userId, vocabulary_id: vocabularyId });
+    if (!progress) {
+      const newCard = createNewCard();
+      const fields = cardToProgressFields(newCard);
+      progress = await VocabularyProgress.create({
+        user_id: userId,
+        vocabulary_id: vocabularyId,
+        ...fields,
+        is_bookmarked: true
+      });
+    } else {
+      progress.is_bookmarked = !progress.is_bookmarked;
+      await progress.save();
+    }
+
+    res.json({ bookmarked: progress.is_bookmarked });
+  } catch (error: any) {
+    console.error('[Review] Error toggling bookmark:', error.message);
+    res.status(500).json({ message: 'Failed to toggle bookmark' });
+  }
+});
+
+/**
+ * GET /api/v1/review/bookmarks
+ * Get all bookmarked words for the authenticated user.
+ */
+router.get('/bookmarks', async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user._id;
+    const bookmarks = await VocabularyProgress.find({
+      user_id: userId,
+      is_bookmarked: true
+    })
+      .populate('vocabulary_id')
+      .lean();
+
+    res.json(bookmarks);
+  } catch (error: any) {
+    console.error('[Review] Error fetching bookmarks:', error.message);
+    res.status(500).json({ message: 'Failed to fetch bookmarks' });
+  }
+});
+
+/**
+ * GET /api/v1/review/analytics
+ * Extended analytics for charts: mastery distribution + daily review counts.
+ */
+router.get('/analytics', async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user._id;
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+    const [stateCounts, reviewedToday, dailyReviews, accuracyData] = await Promise.all([
+      // State distribution
+      VocabularyProgress.aggregate([
+        { $match: { user_id: userId } },
+        { $group: { _id: '$state', count: { $sum: 1 } } }
+      ]),
+      // Today count
+      VocabularyProgress.countDocuments({ user_id: userId, last_review: { $gte: todayStart } }),
+      // Daily review counts (last 30 days)
+      VocabularyProgress.aggregate([
+        {
+          $match: {
+            user_id: userId,
+            last_review: { $gte: thirtyDaysAgo }
+          }
+        },
+        {
+          $group: {
+            _id: { $dateToString: { format: '%m/%d', date: '$last_review' } },
+            count: { $sum: 1 }
+          }
+        },
+        { $sort: { _id: 1 } }
+      ]),
+      // Accuracy: cards with reps > 0, calculate % not in Relearning
+      VocabularyProgress.aggregate([
+        { $match: { user_id: userId, reps: { $gt: 0 } } },
+        {
+          $group: {
+            _id: null,
+            total: { $sum: 1 },
+            good: { $sum: { $cond: [{ $in: ['$state', ['Review']] }, 1, 0] } }
+          }
+        }
+      ])
+    ]);
+
+    const counts: Record<string, number> = { New: 0, Learning: 0, Review: 0, Relearning: 0 };
+    let total = 0;
+    for (const { _id, count } of stateCounts) {
+      counts[_id] = count;
+      total += count;
+    }
+
+    const acc = accuracyData[0];
+    const accuracy = acc && acc.total > 0 ? (acc.good / acc.total) * 100 : 0;
+
+    res.json({
+      new: counts.New,
+      learning: counts.Learning,
+      review: counts.Review,
+      relearning: counts.Relearning,
+      total,
+      reviewedToday,
+      accuracy: Math.round(accuracy),
+      dailyReviews: dailyReviews.map((d: any) => ({ date: d._id, count: d.count }))
+    });
+  } catch (error: any) {
+    console.error('[Review] Error fetching analytics:', error.message);
+    res.status(500).json({ message: 'Failed to fetch analytics' });
   }
 });
 

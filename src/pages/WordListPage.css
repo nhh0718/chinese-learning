@@ -1,0 +1,95 @@
+.word-list-page__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.word-list-page__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.word-list-page__title-cn {
+  font-size: var(--text-xl);
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+.word-list-page__desc {
+  color: var(--color-text-secondary);
+}
+
+.word-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.word-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.word-list__character {
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  min-width: 60px;
+  text-align: center;
+}
+
+.word-list__details {
+  flex: 1;
+}
+
+.word-list__pinyin {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.word-list__meaning {
+  font-weight: 500;
+}
+
+.word-list__hanviet {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.word-list__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.word-list__unbookmark {
+  color: var(--color-accent-coral);
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.word-list__unbookmark:hover {
+  opacity: 1;
+}
+
+.word-list-loading {
+  text-align: center;
+  padding: var(--space-8) 0;
+}
+
+.word-list-loading__spinner {
+  animation: spin 1s linear infinite;
+}
+
+.word-list-empty {
+  text-align: center;
+  padding: var(--space-12) 0;
+  color: var(--color-text-secondary);
+}

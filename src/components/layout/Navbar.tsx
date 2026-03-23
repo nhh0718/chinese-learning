@@ -14,9 +14,9 @@ export default function Navbar() {
     const navLinks = [
         { path: '/', label: 'Home' },
         { path: '/topics', label: 'Topics' },
+        { path: '/flashcards', label: 'Flashcards' },
         { path: '/review', label: 'Review' },
         { path: '/progress', label: 'Progress' },
-        { path: '/telegram', label: 'Telegram' },
     ];
 
     const isActive = (path: string) => {

@@ -1,0 +1,54 @@
+.swipeable-wrapper {
+  position: relative;
+  max-width: 400px;
+  height: 300px;
+  margin: 0 auto var(--space-6);
+  touch-action: pan-y;
+}
+
+.swipeable-card {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  user-select: none;
+}
+
+.swipeable-card:active {
+  cursor: grabbing;
+}
+
+.swipe-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.swipe-indicator--left {
+  left: -60px;
+  color: #ef4444;
+}
+
+.swipe-indicator--right {
+  right: -60px;
+  color: var(--color-success);
+}
+
+@media (max-width: 768px) {
+  .swipeable-wrapper {
+    height: 260px;
+  }
+
+  .swipe-indicator--left {
+    left: 8px;
+  }
+
+  .swipe-indicator--right {
+    right: 8px;
+  }
+}

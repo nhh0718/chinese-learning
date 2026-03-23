@@ -8,7 +8,7 @@
 
 ## Overview
 - **Priority:** P1 - High
-- **Status:** Pending
+- **Status:** Complete
 - **Effort:** 20h
 - **Description:** Build Duolingo/Anki-quality flashcard system with multiple modes, swipe gestures, personal word lists, and review analytics
 
@@ -170,21 +170,21 @@ interface FlashcardStore {
 3. Mobile bottom nav: Home, Topics, Flashcards, Progress, More
 
 ## Todo List
-- [ ] Create flashcardStore.ts with session modes
-- [ ] Build FlashcardSwipeable component with drag gestures
-- [ ] Build FlashcardContent (front/back faces)
-- [ ] Build GradeButtons and SessionProgress components
-- [ ] Create FlashcardsPage (mode selection hub)
-- [ ] Create FlashcardSessionPage (active learning)
-- [ ] Add bookmark toggle API endpoint
-- [ ] Create WordListPage
-- [ ] Install recharts
-- [ ] Create review analytics API endpoint
-- [ ] Create ReviewAnalyticsPage with charts
-- [ ] Update router with new routes
-- [ ] Update Navbar with Flashcards link + badge
-- [ ] Test swipe gestures on mobile
-- [ ] Test all 4 flashcard modes end-to-end
+- [x] Create flashcardStore.ts with session modes
+- [x] Build FlashcardSwipeable component with drag gestures
+- [x] Build FlashcardContent (front/back faces)
+- [x] Build GradeButtons and SessionProgress components
+- [x] Create FlashcardsPage (mode selection hub)
+- [x] Create FlashcardSessionPage (active learning)
+- [x] Add bookmark toggle API endpoint
+- [x] Create WordListPage
+- [x] Install recharts
+- [x] Create review analytics API endpoint
+- [x] Create ReviewAnalyticsPage with charts
+- [x] Update router with new routes
+- [x] Update Navbar with Flashcards link + badge
+- [x] Test swipe gestures on mobile
+- [x] Test all 4 flashcard modes end-to-end
 
 ## Success Criteria
 - All 4 modes work: Learn, Review, Quick, Cram

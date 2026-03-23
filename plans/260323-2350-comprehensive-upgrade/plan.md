@@ -23,7 +23,7 @@ Transform current learning app into a full HSK/TOCFL exam prep platform with PWA
 | # | Phase | Status | Effort | Link |
 |---|-------|--------|--------|------|
 | 1 | Foundation & PWA | Complete | 16h | [phase-01](./phase-01-foundation-and-pwa.md) |
-| 2 | SRS Flashcards & Enhanced Review | Pending | 20h | [phase-02](./phase-02-srs-flashcards.md) |
+| 2 | SRS Flashcards & Enhanced Review | Complete | 20h | [phase-02](./phase-02-srs-flashcards.md) |
 | 3 | Exam Prep Suite | Pending | 24h | [phase-03](./phase-03-exam-prep-suite.md) |
 | 4 | Gamification & Polish | Pending | 20h | [phase-04](./phase-04-gamification-and-polish.md) |
 

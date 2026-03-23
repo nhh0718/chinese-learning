@@ -6,6 +6,10 @@ import TopicDetailPage from '../pages/TopicDetailPage';
 import LessonDetailPage from '../pages/LessonDetailPage';
 import ExercisePage from '../pages/ExercisePage';
 import ReviewPage from '../pages/ReviewPage';
+import FlashcardsPage from '../pages/FlashcardsPage';
+import FlashcardSessionPage from '../pages/FlashcardSessionPage';
+import WordListPage from '../pages/WordListPage';
+import ReviewAnalyticsPage from '../pages/ReviewAnalyticsPage';
 import ProgressPage from '../pages/ProgressPage';
 import TelegramPage from '../pages/TelegramPage';
 import DailyQuizPage from '../pages/DailyQuizPage';
@@ -23,6 +27,10 @@ export const router = createBrowserRouter([
             { path: 'topics/:topicId/lessons/:lessonId', element: <LessonDetailPage /> },
             { path: 'topics/:topicId/lessons/:lessonId/exercises', element: <ExercisePage /> },
             { path: 'review', element: <ReviewPage /> },
+            { path: 'flashcards', element: <FlashcardsPage /> },
+            { path: 'flashcards/session', element: <FlashcardSessionPage /> },
+            { path: 'word-list', element: <WordListPage /> },
+            { path: 'analytics', element: <ReviewAnalyticsPage /> },
             { path: 'progress', element: <ProgressPage /> },
             { path: 'telegram', element: <TelegramPage /> },
             { path: 'quiz', element: <DailyQuizPage /> },
