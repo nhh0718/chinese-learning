@@ -23,6 +23,7 @@ import progressRoutes from './routes/progress';
 import telegramRoutes from './routes/telegram';
 import reviewRoutes from './routes/review';
 import mockTestRoutes from './routes/mock-tests';
+import gamificationRoutes from './routes/gamification';
 
 app.use('/api/v1/topics', topicRoutes);
 app.use('/api/v1/lessons', lessonRoutes);
@@ -32,6 +33,7 @@ app.use('/api/v1/progress', progressRoutes);
 app.use('/api/v1/telegram', telegramRoutes);
 app.use('/api/v1/review', reviewRoutes);
 app.use('/api/v1/mock-tests', mockTestRoutes);
+app.use('/api/v1/gamification', gamificationRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

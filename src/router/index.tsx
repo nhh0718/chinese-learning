@@ -17,6 +17,8 @@ import MockTestListPage from '../pages/MockTestListPage';
 import MockTestSessionPage from '../pages/MockTestSessionPage';
 import MockTestResultPage from '../pages/MockTestResultPage';
 import MockTestHistoryPage from '../pages/MockTestHistoryPage';
+import AchievementsPage from '../pages/AchievementsPage';
+import LeaderboardPage from '../pages/LeaderboardPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
@@ -39,6 +41,8 @@ export const router = createBrowserRouter([
             { path: 'mock-tests/history', element: <MockTestHistoryPage /> },
             { path: 'mock-tests/:testId', element: <MockTestSessionPage /> },
             { path: 'mock-tests/:testId/result', element: <MockTestResultPage /> },
+            { path: 'achievements', element: <AchievementsPage /> },
+            { path: 'leaderboard', element: <LeaderboardPage /> },
             { path: 'progress', element: <ProgressPage /> },
             { path: 'telegram', element: <TelegramPage /> },
             { path: 'quiz', element: <DailyQuizPage /> },

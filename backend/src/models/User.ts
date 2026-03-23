@@ -10,6 +10,11 @@ export interface IUser extends Document {
   points: number;
   streak: number;
   lastQuizDate?: Date;
+  // Gamification fields
+  xp: number;
+  level: number;
+  weeklyXp: number;
+  weeklyXpResetAt?: Date;
   createdAt: Date;
 }
 
@@ -22,7 +27,11 @@ const UserSchema: Schema = new Schema({
   telegramUsername: { type: String },
   points: { type: Number, default: 0 },
   streak: { type: Number, default: 0 },
-  lastQuizDate: { type: Date }
+  lastQuizDate: { type: Date },
+  xp: { type: Number, default: 0 },
+  level: { type: Number, default: 1 },
+  weeklyXp: { type: Number, default: 0 },
+  weeklyXpResetAt: { type: Date }
 }, { timestamps: true });
 
 export default mongoose.model<IUser>('User', UserSchema);
