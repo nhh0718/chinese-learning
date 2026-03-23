@@ -8,8 +8,9 @@
 
 ## Overview
 - **Priority:** P2 - Medium
-- **Status:** Pending
+- **Status:** Complete
 - **Effort:** 20h
+- **Note:** Core gamification features implemented. Deferred: Push notifications, loading skeletons, page transitions
 - **Description:** XP/level system, achievements, learning paths, leaderboard, dark mode, push notifications, UI polish
 
 ## Key Insights
@@ -193,25 +194,25 @@ POST /api/v1/notifications/subscribe  → Subscribe to push notifications
 6. Error states: retry buttons, helpful messages
 
 ## Todo List
-- [ ] Add xp, level, weeklyXp fields to User model
-- [ ] Create xp-service.ts with level calculation
-- [ ] Integrate XP awards into review, mock-test, progress routes
-- [ ] Create Achievement and UserAchievement models
-- [ ] Create achievement-checker.ts service
-- [ ] Seed 15+ achievement definitions
-- [ ] Create gamification API routes
-- [ ] Create gamificationStore.ts
-- [ ] Build AchievementsPage with badge grid
-- [ ] Build LeaderboardPage with weekly ranking
-- [ ] Build LearningPathPage with HSK roadmap
-- [ ] Update ProgressPage with XP bar and level
-- [ ] Implement dark mode CSS variables
-- [ ] Add dark mode toggle to Navbar
-- [ ] Test all pages in dark mode
-- [ ] Add push notification support
-- [ ] Build AchievementToast component
-- [ ] Add loading skeletons and empty states
-- [ ] Add page transition animations
+- [x] Add xp, level, weeklyXp fields to User model
+- [x] Create xp-service.ts with level calculation
+- [x] Integrate XP awards into review, mock-test, progress routes
+- [x] Create Achievement and UserAchievement models
+- [x] Create achievement-checker.ts service
+- [x] Seed 15+ achievement definitions
+- [x] Create gamification API routes
+- [x] Create gamificationStore.ts
+- [x] Build AchievementsPage with badge grid
+- [x] Build LeaderboardPage with weekly ranking
+- [x] Build LearningPathPage with HSK roadmap
+- [x] Update ProgressPage with XP bar and level
+- [x] Implement dark mode CSS variables
+- [x] Add dark mode toggle to Navbar
+- [x] Test all pages in dark mode
+- [ ] Add push notification support (DEFERRED)
+- [x] Build AchievementToast component
+- [ ] Add loading skeletons and empty states (DEFERRED)
+- [ ] Add page transition animations (DEFERRED)
 
 ## Success Criteria
 - XP awarded for all activities, level-up works correctly

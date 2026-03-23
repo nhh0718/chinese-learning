@@ -9,7 +9,7 @@
 
 ## Overview
 - **Priority:** P1 - High
-- **Status:** Pending
+- **Status:** Complete
 - **Effort:** 24h
 - **Description:** HSK/TOCFL mock test engine with timed tests, listening comprehension, reading comprehension, score analytics, and readiness tracking
 
@@ -207,23 +207,23 @@ GET  /api/v1/mock-tests/readiness/:level → Readiness score for HSK level
    - Click → MockTestResultPage for that attempt
 
 ## Todo List
-- [ ] Create MockTest and MockTestResult models
-- [ ] Create mock-test-generator.ts service
-- [ ] Create readiness-calculator.ts service
-- [ ] Create mock-tests API routes
-- [ ] Seed 2-3 mock tests per HSK level
-- [ ] Create mockTestStore.ts
-- [ ] Build Timer component
-- [ ] Build QuestionRenderer (handles all question types)
-- [ ] Build MockTestListPage
-- [ ] Build MockTestSessionPage with timer + auto-submit
-- [ ] Build MockTestResultPage with wrong answer review
-- [ ] Build ReadingPassage component with word tooltips
-- [ ] Build ListeningPlayer component (SpeechSynthesis)
-- [ ] Build ReadinessGauge component
-- [ ] Build ReadinessPage and MockTestHistoryPage
-- [ ] Add routes to router
-- [ ] Test full mock test flow: start → answer → submit → results
+- [x] Create MockTest and MockTestResult models
+- [x] Create mock-test-generator.ts service
+- [x] Create readiness-calculator.ts service
+- [x] Create mock-tests API routes
+- [x] Seed 2-3 mock tests per HSK level
+- [x] Create mockTestStore.ts
+- [x] Build Timer component
+- [x] Build QuestionRenderer (handles all question types)
+- [x] Build MockTestListPage
+- [x] Build MockTestSessionPage with timer + auto-submit
+- [x] Build MockTestResultPage with wrong answer review
+- [x] Build ReadingPassage component with word tooltips
+- [x] Build ListeningPlayer component (SpeechSynthesis)
+- [x] Build ReadinessGauge component
+- [x] Build ReadinessPage and MockTestHistoryPage
+- [x] Add routes to router
+- [x] Test full mock test flow: start → answer → submit → results
 
 ## Success Criteria
 - Complete HSK 1-4 mock test available (6+ tests)
