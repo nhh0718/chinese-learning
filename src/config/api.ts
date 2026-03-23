@@ -7,6 +7,7 @@ export const API_URLS = {
   lessons: `${API_BASE_URL}/api/v1/lessons`,
   progress: `${API_BASE_URL}/api/v1/progress`,
   telegram: `${API_BASE_URL}/api/v1/telegram`,
+  review: `${API_BASE_URL}/api/v1/review`,
 };
 
 export default API_BASE_URL;

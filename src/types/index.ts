@@ -81,6 +81,35 @@ export interface User {
   createdAt: string;
 }
 
+// ===== FSRS Review Types =====
+
+export type FSRSGrade = 1 | 2 | 3 | 4; // Again, Hard, Good, Easy
+
+export interface ReviewCard {
+  progressId: string;
+  vocabularyId: string;
+  character: string;
+  simplified: string;
+  traditional: string;
+  pinyin: string;
+  zhuyin: string;
+  meaning: string;
+  hanViet?: string;
+  state: 'New' | 'Learning' | 'Review' | 'Relearning';
+  reps: number;
+  due: string;
+}
+
+export interface ReviewStats {
+  new: number;
+  learning: number;
+  review: number;
+  relearning: number;
+  total: number;
+  due: number;
+  reviewedToday: number;
+}
+
 export interface DailyWord {
   character: string;
   pinyin: string;

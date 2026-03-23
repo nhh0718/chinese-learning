@@ -21,6 +21,7 @@ import vocabularyRoutes from './routes/vocabulary';
 import authRoutes from './routes/auth';
 import progressRoutes from './routes/progress';
 import telegramRoutes from './routes/telegram';
+import reviewRoutes from './routes/review';
 
 app.use('/api/v1/topics', topicRoutes);
 app.use('/api/v1/lessons', lessonRoutes);
@@ -28,6 +29,7 @@ app.use('/api/v1/vocabulary', vocabularyRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/progress', progressRoutes);
 app.use('/api/v1/telegram', telegramRoutes);
+app.use('/api/v1/review', reviewRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
